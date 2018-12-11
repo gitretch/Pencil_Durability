@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28010.2003
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PencilDurability", "PencilDurability\PencilDurability.csproj", "{0ECD0920-615B-4DBB-ADA0-CFE1A35CB66B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PencilDurabilityTests", "PencilDurabilityTests\PencilDurabilityTests.csproj", "{3C400EAE-C3EE-491D-98B2-8123F8B0AED4}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0ECD0920-615B-4DBB-ADA0-CFE1A35CB66B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0ECD0920-615B-4DBB-ADA0-CFE1A35CB66B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0ECD0920-615B-4DBB-ADA0-CFE1A35CB66B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0ECD0920-615B-4DBB-ADA0-CFE1A35CB66B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3C400EAE-C3EE-491D-98B2-8123F8B0AED4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3C400EAE-C3EE-491D-98B2-8123F8B0AED4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3C400EAE-C3EE-491D-98B2-8123F8B0AED4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3C400EAE-C3EE-491D-98B2-8123F8B0AED4}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {BC366E2F-9BB7-415E-AB89-86A2750A912A}
+	EndGlobalSection
+EndGlobal
