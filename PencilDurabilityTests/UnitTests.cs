@@ -12,7 +12,14 @@ namespace PencilDurabilityTests
             Pencil pencil = new Pencil();
             Assert.AreEqual(5, pencil.Length);             
         }
-        
+
+        [TestMethod]
+        public void LengthAlwaysZeroOrPositive()
+        {
+            Pencil pencil = new Pencil(-1);
+            Assert.AreEqual(0, pencil.Length);
+        }
+
         [TestMethod]
         public void InitialPointDurabilityCannotBeLessThanOne()
         {

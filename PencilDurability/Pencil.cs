@@ -16,6 +16,7 @@ namespace PencilDurability
             {
                 length = 0;
             }
+
             if (pencilPointDurability > 0)
             {
                 initialPointDurability = currentPointDurability = pencilPointDurability;
