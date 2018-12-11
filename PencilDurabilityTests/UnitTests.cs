@@ -27,5 +27,11 @@ namespace PencilDurabilityTests
             Assert.AreEqual(1, pencil.PointDurability);
         }
 
+        [TestMethod]
+        public void InitialEraserDurabilityCannotBeLessThanZero()
+        {
+            Pencil pencil = new Pencil(5, 20, -1);
+            Assert.AreEqual(0, pencil.EraserDurability);
+        }
     }
 }

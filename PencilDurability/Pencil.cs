@@ -26,7 +26,14 @@ namespace PencilDurability
                 initialPointDurability = currentPointDurability = 1;
             }
 
-
+            if (pencilEraserDurability >= 0)
+            {
+                eraserDurability = pencilEraserDurability;
+            }
+            else
+            {
+                eraserDurability = 0;
+            }
         }
 
         private int length;
