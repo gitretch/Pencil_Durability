@@ -42,5 +42,14 @@ namespace PencilDurabilityTests
             pencil.Sharpen();
             Assert.AreEqual(4, pencil.Length);
         }
+
+
+        [TestMethod]
+        public void WhenSharpenCalledCurrentPointDurabilityIsResetToInitialPointDurability()
+        {
+            Pencil pencil = new Pencil(5, 20);
+            pencil.Sharpen();
+            Assert.AreEqual(20, pencil.PointDurability);
+        }
     }
 }
