@@ -34,6 +34,7 @@ namespace PencilDurability
             {
                 eraserDurability = 0;
             }
+            paper = existingPaper;
         }
 
         private int length;
@@ -68,6 +69,15 @@ namespace PencilDurability
             get
             {
                 return paper;
+            }
+        }
+
+        public void Sharpen()
+        {
+            if (length > 0)
+            {
+                length--;
+                currentPointDurability = initialPointDurability;
             }
         }
 

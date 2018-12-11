@@ -10,7 +10,7 @@ namespace PencilDurabilityTests
         public void WhenPencilCreatedDefaultLengthIsFive()
         {
             Pencil pencil = new Pencil();
-            Assert.AreEqual(5, pencil.Length);             
+            Assert.AreEqual(5, pencil.Length);
         }
 
         [TestMethod]
@@ -32,6 +32,15 @@ namespace PencilDurabilityTests
         {
             Pencil pencil = new Pencil(5, 20, -1);
             Assert.AreEqual(0, pencil.EraserDurability);
+        }
+
+
+        [TestMethod]
+        public void WhenLengthIs5AndSharpenCalledLengthIsReducedBy1()
+        {
+            Pencil pencil = new Pencil(5);
+            pencil.Sharpen();
+            Assert.AreEqual(4, pencil.Length);
         }
     }
 }
