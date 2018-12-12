@@ -59,5 +59,14 @@ namespace PencilDurabilityTests
             pencil.Sharpen();
             Assert.AreEqual(19, pencil.PointDurability);
         }
+
+        [TestMethod]
+        public void WhenWritePassedOneCharThatCharIsAppendedToPaper()
+        {
+            Pencil pencil = new Pencil();
+            string newText = "a";
+            pencil.Write(newText);
+            Assert.AreEqual("a", pencil.Paper);
+        }
     }
 }

@@ -81,5 +81,16 @@ namespace PencilDurability
             }
         }
 
+        public void Write(string newText)
+        {
+            char[] newTextArray = newText.ToCharArray();
+
+            foreach (char letter in newTextArray)
+            {
+
+                paper += letter;
+
+            }
+        }
     }
 }
