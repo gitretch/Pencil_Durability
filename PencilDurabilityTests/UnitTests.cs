@@ -68,5 +68,17 @@ namespace PencilDurabilityTests
             pencil.Write(newText);
             Assert.AreEqual("a", pencil.Paper);
         }
+
+        [TestMethod]
+        public void WhenWritePassedAdditionalStringItAppendsToExistingText()
+        {
+            Pencil pencil = new Pencil();
+            string existingText = "A cat meows.";
+            pencil.Write(existingText);
+            string appendText = " A dog barks.";
+            pencil.Write(appendText);
+            Assert.AreEqual("A cat meows. A dog barks.", pencil.Paper);
+        }
+
     }
 }
