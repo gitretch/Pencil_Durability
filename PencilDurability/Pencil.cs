@@ -91,10 +91,13 @@ namespace PencilDurability
                 if (degraded)
                 {
                     paper += letter;
-                }                 
-
+                }
+                else
+                {
+                    paper += ' ';
+                } 
             }
-        }
+        } 
 
         public bool DegradePoint(char letter)
         {
@@ -126,6 +129,17 @@ namespace PencilDurability
                     }
                 } 
             }             
+            return completed;
+        }
+
+        public bool DegradeEraser(char letter)
+        {
+            bool completed = false;
+            if(EraserDurability != 0)
+            {
+                completed = true;
+            }
+
             return completed;
         }
     }

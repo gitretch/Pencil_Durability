@@ -147,11 +147,11 @@ namespace PencilDurabilityTests
         public void WhenWritePassedAdditionalStringItAppendsToExistingText()
         {
             Pencil pencil = new Pencil();
-            string existingText = "A cat meows.";
+            string existingText = "A cat meows";
             pencil.Write(existingText);
-            string appendText = " A dog barks.";
+            string appendText = " a dog barks.";
             pencil.Write(appendText);
-            Assert.AreEqual("A cat meows. A dog barks.", pencil.Paper);
+            Assert.AreEqual("A cat meows a dog barks.", pencil.Paper);
         }
 
         [TestMethod]
@@ -160,9 +160,20 @@ namespace PencilDurabilityTests
             Pencil pencil = new Pencil(5, 4);
             string text = "chuck";
             pencil.Write(text);
-            Assert.AreEqual("chuc", pencil.Paper); 
+            Assert.AreEqual("chuc ", pencil.Paper); 
         }
 
+        [TestMethod]
+        public void WhenDegradeEraserCalledIfCurrentEraserDurabiltyIsGreaterThanZeroReturnsTrue()
+        {
+            Pencil pencil = new Pencil();
+            char textToErase = ' ';
+           
+            Assert.AreEqual(true, pencil.DegradeEraser(textToErase));
+        }
+
+
+      
 
 
 
