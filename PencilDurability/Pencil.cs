@@ -87,10 +87,26 @@ namespace PencilDurability
 
             foreach (char letter in newTextArray)
             {
-
+               
                 paper += letter;
 
             }
+        }
+
+        public bool DegradePoint(char letter)
+        {
+            bool completed = false;
+            if(currentPointDurability > 0)
+            {
+                if (char.IsUpper(letter))
+                {
+                    currentPointDurability -= 2;
+                    completed = true;
+                }
+                return true;
+            }
+            
+            return completed;
         }
     }
 }

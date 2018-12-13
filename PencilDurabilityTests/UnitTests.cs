@@ -61,6 +61,23 @@ namespace PencilDurabilityTests
         }
 
         [TestMethod]
+        public void WhenDegradePointCalledIfCurrentPointDurabilityIsGreaterThanZeroReturnsTrue()
+        {
+            Pencil pencil = new Pencil();
+            char letter = ' ';
+            Assert.AreEqual(true, pencil.DegradePoint(letter));
+        }
+
+        [TestMethod]
+        public void WhenDegradePointPassedUpperCaseCharCurrentPointDurabilityDecreasesByTwo()
+        {
+            Pencil pencil = new Pencil();
+            char letter = 'A';
+            pencil.DegradePoint(letter);
+            Assert.AreEqual(18, pencil.PointDurability);
+        }
+
+        [TestMethod]
         public void WhenWritePassedOneCharThatCharIsAppendedToPaper()
         {
             Pencil pencil = new Pencil();
@@ -79,6 +96,8 @@ namespace PencilDurabilityTests
             pencil.Write(appendText);
             Assert.AreEqual("A cat meows. A dog barks.", pencil.Paper);
         }
+
+
 
     }
 }
