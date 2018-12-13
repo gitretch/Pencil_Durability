@@ -114,6 +114,15 @@ namespace PencilDurabilityTests
             Assert.AreEqual(19, pencil.PointDurability);
         }
 
+        [TestMethod]
+        public void WhenDegradePointGivenSpecialCharPointDurabilityDecreasedByOne()
+        {
+            Pencil pencil = new Pencil();
+            char letter = '$';
+            bool result = pencil.DegradePoint(letter);
+            Assert.AreEqual(true, result);
+            Assert.AreEqual(19, pencil.PointDurability);
+        }
 
 
         [TestMethod]
