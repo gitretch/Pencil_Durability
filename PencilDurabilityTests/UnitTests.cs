@@ -80,8 +80,8 @@ namespace PencilDurabilityTests
         [TestMethod]
         public void WhenDegradePointPassedUpperCaseCharAndCurrentPointDurabilityIsOneReturnsFalse()
         {
-            Pencil pencil = new Pencil(1,1);
-            char letter = 'A';            
+            Pencil pencil = new Pencil(1, 1);
+            char letter = 'A';
             Assert.AreEqual(false, pencil.DegradePoint(letter));
         }
 
@@ -99,9 +99,9 @@ namespace PencilDurabilityTests
         {
             Pencil pencil = new Pencil();
             char letter = ' ';
-            bool result = pencil.DegradePoint(letter); 
+            bool result = pencil.DegradePoint(letter);
             Assert.AreEqual(true, result);
-            Assert.AreEqual(20, pencil.PointDurability);            
+            Assert.AreEqual(20, pencil.PointDurability);
         }
 
         [TestMethod]
@@ -133,7 +133,7 @@ namespace PencilDurabilityTests
             Assert.AreEqual(true, result);
             Assert.AreEqual(19, pencil.PointDurability);
         }
-        
+
         [TestMethod]
         public void WhenWritePassedOneCharThatCharIsAppendedToPaper()
         {
@@ -160,7 +160,7 @@ namespace PencilDurabilityTests
             Pencil pencil = new Pencil(5, 4);
             string text = "chuck";
             pencil.Write(text);
-            Assert.AreEqual("chuc ", pencil.Paper); 
+            Assert.AreEqual("chuc ", pencil.Paper);
         }
 
         [TestMethod]
@@ -168,12 +168,21 @@ namespace PencilDurabilityTests
         {
             Pencil pencil = new Pencil();
             char textToErase = ' ';
-           
             Assert.AreEqual(true, pencil.DegradeEraser(textToErase));
         }
 
+        [TestMethod]
+        public void WhenDegradeEraserPassedOneCharStringEraserDurabilityDecreasedBy1()
+        {
+            Pencil pencil = new Pencil();
+            char textToErase = ' ';
+            pencil.DegradeEraser(textToErase);
+            Assert.AreEqual(19, pencil.EraserDurability);
+        }
 
-      
+
+
+
 
 
 

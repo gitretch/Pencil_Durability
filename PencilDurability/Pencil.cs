@@ -134,13 +134,18 @@ namespace PencilDurability
 
         public bool DegradeEraser(char letter)
         {
-            bool completed = false;
+            bool erased = false;
+            int charCount = 0;
+
             if(EraserDurability != 0)
             {
-                completed = true;
+                charCount += 1;
+                erased = true;
+                
             }
+            eraserDurability -= charCount;
 
-            return completed;
+            return erased;
         }
     }
 }
