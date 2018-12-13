@@ -108,9 +108,11 @@ namespace PencilDurability
                     else
                     {
                         currentPointDurability = 0;
-                    }
-
-                   
+                    }                     
+                }
+                else if (char.IsWhiteSpace(letter))
+                {
+                    completed = true;
                 }
             }
             

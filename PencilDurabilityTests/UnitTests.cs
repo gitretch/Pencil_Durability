@@ -92,7 +92,17 @@ namespace PencilDurabilityTests
             char letter = 'A';
             pencil.DegradePoint(letter);
             Assert.AreEqual(0, pencil.PointDurability);
-        }   
+        }
+
+        [TestMethod]
+        public void WhenDegradePointGivenWhiteSpaceCharPointDurabilityNotAffected()
+        {
+            Pencil pencil = new Pencil();
+            char letter = ' ';
+            bool result = pencil.DegradePoint(letter); 
+            Assert.AreEqual(true, result);
+            Assert.AreEqual(20, pencil.PointDurability);            
+        }
 
         [TestMethod]
         public void WhenWritePassedOneCharThatCharIsAppendedToPaper()
