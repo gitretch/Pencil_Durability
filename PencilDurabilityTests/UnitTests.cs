@@ -133,8 +133,7 @@ namespace PencilDurabilityTests
             Assert.AreEqual(true, result);
             Assert.AreEqual(19, pencil.PointDurability);
         }
-
-
+        
         [TestMethod]
         public void WhenWritePassedOneCharThatCharIsAppendedToPaper()
         {
@@ -154,6 +153,16 @@ namespace PencilDurabilityTests
             pencil.Write(appendText);
             Assert.AreEqual("A cat meows. A dog barks.", pencil.Paper);
         }
+
+        [TestMethod]
+        public void WhenWritePassedFiveCharStringAndPointDurabilityIs4OnlyFirst4CharsWillBeWritten()
+        {
+            Pencil pencil = new Pencil(5, 4);
+            string text = "chuck";
+            pencil.Write(text);
+            Assert.AreEqual("chuc", pencil.Paper); 
+        }
+
 
 
 
