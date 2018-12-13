@@ -95,7 +95,7 @@ namespace PencilDurabilityTests
         }
 
         [TestMethod]
-        public void WhenDegradePointGivenWhiteSpaceCharPointDurabilityNotAffected()
+        public void WhenDegradePointPassedWhiteSpaceCharPointDurabilityNotAffected()
         {
             Pencil pencil = new Pencil();
             char letter = ' ';
@@ -105,7 +105,7 @@ namespace PencilDurabilityTests
         }
 
         [TestMethod]
-        public void WhenDegradePointGivenLowerCaseCharPointDurabilityDecreasedByOne()
+        public void WhenDegradePointPassedLowerCaseCharPointDurabilityDecreasedByOne()
         {
             Pencil pencil = new Pencil();
             char letter = 'a';
@@ -115,10 +115,20 @@ namespace PencilDurabilityTests
         }
 
         [TestMethod]
-        public void WhenDegradePointGivenSpecialCharPointDurabilityDecreasedByOne()
+        public void WhenDegradePointPassedSpecialCharPointDurabilityDecreasedByOne()
         {
             Pencil pencil = new Pencil();
             char letter = '$';
+            bool result = pencil.DegradePoint(letter);
+            Assert.AreEqual(true, result);
+            Assert.AreEqual(19, pencil.PointDurability);
+        }
+
+        [TestMethod]
+        public void WhenDegradePointPassedNumberDurabilityDecreasedByOne()
+        {
+            Pencil pencil = new Pencil();
+            char letter = '9';
             bool result = pencil.DegradePoint(letter);
             Assert.AreEqual(true, result);
             Assert.AreEqual(19, pencil.PointDurability);
