@@ -114,8 +114,15 @@ namespace PencilDurability
                 {
                     completed = true;
                 }
-            }
-            
+                else
+                {
+                    if (currentPointDurability > 0)
+                    {
+                        currentPointDurability--;
+                        completed = true;
+                    }
+                } 
+            }             
             return completed;
         }
     }

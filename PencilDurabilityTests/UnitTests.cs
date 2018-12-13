@@ -105,6 +105,18 @@ namespace PencilDurabilityTests
         }
 
         [TestMethod]
+        public void WhenDegradePointGivenLowerCaseCharPointDurabilityDecreasedByOne()
+        {
+            Pencil pencil = new Pencil();
+            char letter = 'a';
+            bool result = pencil.DegradePoint(letter);
+            Assert.AreEqual(true, result);
+            Assert.AreEqual(19, pencil.PointDurability);
+        }
+
+
+
+        [TestMethod]
         public void WhenWritePassedOneCharThatCharIsAppendedToPaper()
         {
             Pencil pencil = new Pencil();
