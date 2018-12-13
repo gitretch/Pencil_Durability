@@ -167,17 +167,26 @@ namespace PencilDurabilityTests
         public void WhenDegradeEraserCalledIfCurrentEraserDurabiltyIsGreaterThanZeroReturnsTrue()
         {
             Pencil pencil = new Pencil();
-            char textToErase = ' ';
+            char textToErase = 'a';
             Assert.AreEqual(true, pencil.DegradeEraser(textToErase));
         }
 
         [TestMethod]
-        public void WhenDegradeEraserPassedOneCharStringEraserDurabilityDecreasedBy1()
+        public void WhenDegradeEraserPassedOneCharEraserDurabilityDecreasedBy1()
+        {
+            Pencil pencil = new Pencil();
+            char textToErase = 'a';
+            pencil.DegradeEraser(textToErase);
+            Assert.AreEqual(19, pencil.EraserDurability);
+        }
+
+        [TestMethod]
+        public void WhenDegradeEraserPassedWhiteSpaceEraserDurabilityDoesntDecrease()
         {
             Pencil pencil = new Pencil();
             char textToErase = ' ';
             pencil.DegradeEraser(textToErase);
-            Assert.AreEqual(19, pencil.EraserDurability);
+            Assert.AreEqual(20, pencil.EraserDurability);
         }
 
 

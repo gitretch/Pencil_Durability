@@ -137,7 +137,7 @@ namespace PencilDurability
             bool erased = false;
             int charCount = 0;
 
-            if(EraserDurability != 0)
+            if(EraserDurability != 0 && letter != ' ')
             {
                 charCount += 1;
                 erased = true;
