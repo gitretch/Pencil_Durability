@@ -96,14 +96,17 @@ namespace PencilDurability
         public bool DegradePoint(char letter)
         {
             bool completed = false;
-            if(currentPointDurability > 0)
+            if (currentPointDurability > 0)
             {
                 if (char.IsUpper(letter))
                 {
-                    currentPointDurability -= 2;
-                    completed = true;
+                    if (currentPointDurability > 1)
+                    {
+                        currentPointDurability -= 2;
+                        completed = true;
+                    }
+                   
                 }
-                return true;
             }
             
             return completed;
