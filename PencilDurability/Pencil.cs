@@ -105,6 +105,11 @@ namespace PencilDurability
                         currentPointDurability -= 2;
                         completed = true;
                     }
+                    else
+                    {
+                        currentPointDurability = 0;
+                    }
+
                    
                 }
             }
