@@ -229,6 +229,15 @@ namespace PencilDurabilityTests
             Assert.AreEqual("An artich@k@ay", pencil.Paper);
         }
 
+        [TestMethod]
+        public void WhenEditPassedTextWithTwoCollisionsOneUpperCaseSixLowerCaseCharsPointDurabilityDecreasesByTen()
+        {
+            Pencil pencil = new Pencil(5, 20, 20, "An       a day");
+            string newText = "ArtichOke";
+            pencil.Edit(newText);
+            Assert.AreEqual(10, pencil.PointDurability);
+        }
+
 
 
 
