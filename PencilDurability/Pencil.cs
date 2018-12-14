@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace PencilDurability
@@ -84,7 +85,7 @@ namespace PencilDurability
         public void Write(string newText)
         {
             char[] newTextArray = newText.ToCharArray();
-                      
+
             foreach (char letter in newTextArray)
             {
                 bool degraded = DegradePoint(letter);
@@ -95,9 +96,9 @@ namespace PencilDurability
                 else
                 {
                     paper += ' ';
-                } 
+                }
             }
-        } 
+        }
 
         public bool DegradePoint(char letter)
         {
@@ -114,7 +115,7 @@ namespace PencilDurability
                     else
                     {
                         currentPointDurability = 0;
-                    }                     
+                    }
                 }
                 else if (char.IsWhiteSpace(letter))
                 {
@@ -127,8 +128,8 @@ namespace PencilDurability
                         currentPointDurability--;
                         completed = true;
                     }
-                } 
-            }             
+                }
+            }
             return completed;
         }
 
@@ -137,15 +138,39 @@ namespace PencilDurability
             bool erased = false;
             int charCount = 0;
 
-            if(EraserDurability != 0 && letter != ' ')
+            if (EraserDurability != 0 && letter != ' ')
             {
                 charCount += 1;
                 erased = true;
-                
+
             }
             eraserDurability -= charCount;
 
             return erased;
+        }
+
+        public void Erase(string wordToErase)
+        {
+            //returns -1 if wordToErase not in string
+            int startingPos = paper.LastIndexOf(wordToErase);
+            if (startingPos != -1)
+            {
+                int endingPos = startingPos + wordToErase.Length - 1;
+                char[] eraseArray = wordToErase.ToCharArray();
+                //char[] paperArray = paper.ToArray();
+                 
+                for (int i = endingPos; i > 0; i--)
+                {
+                    bool erased = DegradeEraser(eraseArray[i]);
+                    if (erased)
+                    {
+                        eraseArray[i] = ' '; 
+
+                    }
+                }
+               
+               paper = new string(eraseArray);  
+            } 
         }
     }
 }

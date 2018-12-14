@@ -135,7 +135,7 @@ namespace PencilDurabilityTests
         }
 
         [TestMethod]
-        public void WhenWritePassedOneCharThatCharIsAppendedToPaper()
+        public void WhenWritePassedOneCharStringThatStringIsAppendedToPaper()
         {
             Pencil pencil = new Pencil();
             string newText = "a";
@@ -146,9 +146,7 @@ namespace PencilDurabilityTests
         [TestMethod]
         public void WhenWritePassedAdditionalStringItAppendsToExistingText()
         {
-            Pencil pencil = new Pencil();
-            string existingText = "A cat meows";
-            pencil.Write(existingText);
+            Pencil pencil = new Pencil(5,20,20, "A cat meows");
             string appendText = " a dog barks.";
             pencil.Write(appendText);
             Assert.AreEqual("A cat meows a dog barks.", pencil.Paper);
@@ -187,6 +185,14 @@ namespace PencilDurabilityTests
             char textToErase = ' ';
             pencil.DegradeEraser(textToErase);
             Assert.AreEqual(20, pencil.EraserDurability);
+        }
+
+        [TestMethod]
+        public void WhenErasePassedStringItErasesOppositeOrderStringWasWrittenAndReplacesWithWhiteSpace()
+        {
+            Pencil pencil = new Pencil(5, 20, 1, "Bill");
+            pencil.Erase("Bill");
+            Assert.AreEqual("Bil ", pencil.Paper);
         }
 
 
