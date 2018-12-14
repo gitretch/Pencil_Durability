@@ -196,7 +196,7 @@ namespace PencilDurabilityTests
         }
 
         [TestMethod]
-        public void WhenEraseGivenTextToEraseWithTwoInstancesofSameWordRemovesLastInstanceOfWordFromString()
+        public void WhenErasePassedTextToEraseWithTwoInstancesofSameWordRemovesLastInstanceOfWordFromString()
         {
             Pencil pencil = new Pencil(5, 30, 30, "how much wood can a woodchuck");
             pencil.Erase("wood");
@@ -204,6 +204,13 @@ namespace PencilDurabilityTests
 
         }
 
+        [TestMethod]
+        public void WhenErasePassedStringofTwoCharsEraserDurabilityDecreasesByTwo()
+        {
+            Pencil pencil = new Pencil(5,20,20,"ab");
+            pencil.Erase("ab");
+            Assert.AreEqual(18, pencil.EraserDurability);
+        }
 
 
 
