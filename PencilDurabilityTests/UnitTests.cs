@@ -4,7 +4,7 @@ using PencilDurability;
 namespace PencilDurabilityTests
 {
     [TestClass]
-    public class UnitTests
+    public class AtSymbol
     {
         [TestMethod]
         public void WhenPencilCreatedDefaultLengthIsFive()
@@ -146,7 +146,7 @@ namespace PencilDurabilityTests
         [TestMethod]
         public void WhenWritePassedAdditionalStringItAppendsToExistingText()
         {
-            Pencil pencil = new Pencil(5,20,20, "A cat meows");
+            Pencil pencil = new Pencil(5, 20, 20, "A cat meows");
             string appendText = " a dog barks.";
             pencil.Write(appendText);
             Assert.AreEqual("A cat meows a dog barks.", pencil.Paper);
@@ -201,17 +201,33 @@ namespace PencilDurabilityTests
             Pencil pencil = new Pencil(5, 30, 30, "how much wood can a woodchuck");
             pencil.Erase("wood");
             Assert.AreEqual("how much wood can a     chuck", pencil.Paper);
-
         }
 
         [TestMethod]
         public void WhenErasePassedStringofTwoCharsEraserDurabilityDecreasesByTwo()
         {
-            Pencil pencil = new Pencil(5,20,20,"ab");
+            Pencil pencil = new Pencil(5, 20, 20, "ab");
             pencil.Erase("ab");
             Assert.AreEqual(18, pencil.EraserDurability);
         }
 
+        [TestMethod]
+        public void WhenEditPassedNewTextInsertsThatText()
+        {
+            Pencil pencil = new Pencil(5, 20, 20, "An       a day");
+            string word = "onion";
+            pencil.Edit(word);
+            Assert.AreEqual("An onion a day", pencil.Paper);
+        }
+
+        [TestMethod]
+        public void WhenEditPassedStringThatCollidesWithExistingTextCollsionsReplacedWithAtSymbol() 
+        {
+            Pencil pencil = new Pencil(5, 20, 20, "An       a day");
+            string newText = "artichoke";
+            pencil.Edit(newText);
+            Assert.AreEqual("An artich@k@ay", pencil.Paper);
+        }
 
 
 

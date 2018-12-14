@@ -174,5 +174,31 @@ namespace PencilDurability
                 paper = new string(paperArray);
             }
         }
+
+        public void Edit(string replaceText)
+        {
+            int startingPos = Paper.IndexOf("  ");
+            char[] replaceTextArray = replaceText.ToCharArray();
+            char[] paperArray = Paper.ToArray();
+
+            for (int j = 0; j < replaceTextArray.Length - 1;)
+            {
+                for (int i = startingPos + 1; i < paperArray.Length - 1; i++) //
+                {
+                    if (paperArray[i] == ' ' && j < replaceTextArray.Length)
+                    {
+                        paperArray[i] = replaceTextArray[j];
+                        DegradePoint(paperArray[i]);
+                    }
+                    else if (j < replaceTextArray.Length)
+                    {
+                        paperArray[i] = '@';
+                        DegradePoint(paperArray[i]);
+                    }
+                    j++;
+                }
+            }
+            paper = new string(paperArray);
+        }
     }
 }
