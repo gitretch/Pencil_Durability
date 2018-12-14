@@ -195,6 +195,16 @@ namespace PencilDurabilityTests
             Assert.AreEqual("Bil ", pencil.Paper);
         }
 
+        [TestMethod]
+        public void WhenEraseGivenTextToEraseWithTwoInstancesofSameWordRemovesLastInstanceOfWordFromString()
+        {
+            Pencil pencil = new Pencil(5, 30, 30, "how much wood can a woodchuck");
+            pencil.Erase("wood");
+            Assert.AreEqual("how much wood can a     chuck", pencil.Paper);
+
+        }
+
+
 
 
 

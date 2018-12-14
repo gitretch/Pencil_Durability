@@ -157,20 +157,22 @@ namespace PencilDurability
             {
                 int endingPos = startingPos + wordToErase.Length - 1;
                 char[] eraseArray = wordToErase.ToCharArray();
-                //char[] paperArray = paper.ToArray();
-                 
-                for (int i = endingPos; i > 0; i--)
-                {
-                    bool erased = DegradeEraser(eraseArray[i]);
-                    if (erased)
-                    {
-                        eraseArray[i] = ' '; 
+                char[] paperArray = paper.ToCharArray();
+                Array.Reverse(eraseArray);
 
+                foreach (char letter in eraseArray)
+                {
+                    for (int i = endingPos; i >= startingPos; i--)
+                    {
+                        bool erased = DegradeEraser(paperArray[i]);
+                        if (erased)
+                        {
+                            paperArray[i] = ' ';
+                        }
                     }
                 }
-               
-               paper = new string(eraseArray);  
-            } 
+                paper = new string(paperArray);
+            }
         }
     }
 }
