@@ -60,14 +60,6 @@ namespace PencilDurabilityTests
             Assert.AreEqual(19, pencil.PointDurability);
         }
 
-        //[TestMethod]
-        //public void WhenWriteCalledIfCurrentPointDurabilityIsGreaterThanZeroReturnsTrue()
-        //{
-        //    Pencil pencil = new Pencil();
-        //    char letter = ' ';
-        //    pencil.Write()
-        //    Assert.AreEqual(true, pencil.DegradePoint(letter));
-        //}
 
         [TestMethod]
         public void WheWritePassedUpperCaseCharCurrentPointDurabilityDecreasesByTwo()
@@ -77,13 +69,6 @@ namespace PencilDurabilityTests
             Assert.AreEqual(18, pencil.PointDurability);
         }
 
-        //[TestMethod]
-        //public void WhenWritePassedUpperCaseCharAndCurrentPointDurabilityIsOneCurrentPointDurabilityNotAffected()
-        //{
-        //    Pencil pencil = new Pencil(1, 1);
-        //    pencil.Write("A");
-        //    Assert.AreEqual(1, pencil.PointDurability);
-        //}
 
         [TestMethod]
         public void WhenWritePassedUpperCaseCharAndCurrentPointDurabilityIsOneCurrentPointDurabiltySetToZero()
@@ -151,14 +136,6 @@ namespace PencilDurabilityTests
             pencil.Write(text);
             Assert.AreEqual("chuc ", pencil.Paper);
         }
-
-        //[TestMethod]
-        //public void WhenEraseCalledIfCurrentEraserDurabiltyIsGreaterThanZeroReturnsTrue()
-        //{
-        //    Pencil pencil = new Pencil();
-        //    char textToErase = 'a';
-        //    Assert.AreEqual(true, pencil.DegradeEraser(textToErase));
-        //}
 
     [TestMethod]
     public void WhenErasePassedOneCharEraserDurabilityDecreasesByOne()

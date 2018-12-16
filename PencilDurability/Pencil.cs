@@ -174,51 +174,6 @@ namespace PencilDurability
             return completed;
         }
 
-        //public void Edit2(string replaceText)
-        //{
-        //    char[] replaceTextArray = replaceText.ToCharArray();
-        //    char[] paperArray = paper.ToArray();
-
-        //    if (startingIndexLastErase >= 0)
-        //    {
-        //        int curPaperIndex = startingIndexLastErase;
-
-        //        for (int i = 0; i < replaceTextArray.Length; i++)
-        //        {
-        //            // will incrementing spot in paper array exceed length of paper array?
-        //            if (curPaperIndex > paper.Length)
-        //            {
-        //                // y, write char
-        //                Write(replaceTextArray[i].ToString());
-        //            }
-        //            else
-        //            {
-        //                // n, edit char
-        //                // is paper array char white space?
-        //                if (char.IsWhiteSpace(paperArray[curPaperIndex]))
-        //                {
-        //                    // y, write replacetext char
-        //                    bool degraded = _degradePoint(replaceTextArray[i]);
-        //                    if (degraded)
-        //                    {
-        //                        paperArray[curPaperIndex] = replaceTextArray[i];
-        //                    }
-        //                }
-        //                else
-        //                {
-        //                    // n, put @
-        //                    Write("@");
-        //                    //paperArray[curPaperIndex] = '@';
-
-        //                }
-        //                curPaperIndex++;
-        //            }
-        //            startingIndexLastErase = -1;
-        //        }
-        //    }
-        //    paper = new string(paperArray);
-        //}
-
         public void Edit(string replaceText)
         {
             char[] replaceTextArray = replaceText.ToCharArray();
