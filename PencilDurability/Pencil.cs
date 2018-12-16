@@ -43,6 +43,7 @@ namespace PencilDurability
         private int currentPointDurability;
         private int eraserDurability;
         private string paper;
+        private int startingIndexLastErase = -1;
 
         public int Length
         {
@@ -88,7 +89,7 @@ namespace PencilDurability
 
             foreach (char letter in newTextArray)
             {
-                bool degraded = DegradePoint(letter);
+                bool degraded = _degradePoint(letter);
                 if (degraded)
                 {
                     paper += letter;
@@ -100,7 +101,7 @@ namespace PencilDurability
             }
         }
 
-        public bool DegradePoint(char letter)
+        private bool _degradePoint(char letter)
         {
             bool completed = false;
             if (currentPointDurability > 0)
@@ -133,25 +134,9 @@ namespace PencilDurability
             return completed;
         }
 
-        public bool DegradeEraser(char letter)
-        {
-            bool erased = false;
-            int charCount = 0;
-
-            if (EraserDurability != 0 && letter != ' ')
-            {
-                charCount += 1;
-                erased = true;
-
-            }
-            eraserDurability -= charCount;
-
-            return erased;
-        }
-
         public void Erase(string wordToErase)
         {
-            //returns -1 if wordToErase not in string
+            // LastIndexOf returns -1 if wordToErase not in string
             int startingPos = paper.LastIndexOf(wordToErase);
             if (startingPos != -1)
             {
@@ -160,45 +145,118 @@ namespace PencilDurability
                 char[] paperArray = paper.ToCharArray();
                 Array.Reverse(eraseArray);
 
-                foreach (char letter in eraseArray)
+                for (int i = endingPos; i >= startingPos; i--)
                 {
-                    for (int i = endingPos; i >= startingPos; i--)
+                    bool erased = _degradeEraser(paperArray[i]);
+                    if (erased)
                     {
-                        bool erased = DegradeEraser(paperArray[i]);
-                        if (erased)
-                        {
-                            paperArray[i] = ' ';
-                        }
+                        paperArray[i] = ' ';
+                        startingIndexLastErase = i;
                     }
                 }
                 paper = new string(paperArray);
             }
         }
 
+        private bool _degradeEraser(char letter)
+        {
+            bool completed = false;
+
+            if (char.IsWhiteSpace(letter))
+            {
+                completed = true;
+            }
+            if (EraserDurability > 0)
+            {
+                eraserDurability--;
+                completed = true;
+            }
+            return completed;
+        }
+
+        //public void Edit2(string replaceText)
+        //{
+        //    char[] replaceTextArray = replaceText.ToCharArray();
+        //    char[] paperArray = paper.ToArray();
+
+        //    if (startingIndexLastErase >= 0)
+        //    {
+        //        int curPaperIndex = startingIndexLastErase;
+
+        //        for (int i = 0; i < replaceTextArray.Length; i++)
+        //        {
+        //            // will incrementing spot in paper array exceed length of paper array?
+        //            if (curPaperIndex > paper.Length)
+        //            {
+        //                // y, write char
+        //                Write(replaceTextArray[i].ToString());
+        //            }
+        //            else
+        //            {
+        //                // n, edit char
+        //                // is paper array char white space?
+        //                if (char.IsWhiteSpace(paperArray[curPaperIndex]))
+        //                {
+        //                    // y, write replacetext char
+        //                    bool degraded = _degradePoint(replaceTextArray[i]);
+        //                    if (degraded)
+        //                    {
+        //                        paperArray[curPaperIndex] = replaceTextArray[i];
+        //                    }
+        //                }
+        //                else
+        //                {
+        //                    // n, put @
+        //                    Write("@");
+        //                    //paperArray[curPaperIndex] = '@';
+
+        //                }
+        //                curPaperIndex++;
+        //            }
+        //            startingIndexLastErase = -1;
+        //        }
+        //    }
+        //    paper = new string(paperArray);
+        //}
+
         public void Edit(string replaceText)
         {
-            int startingPos = Paper.IndexOf("  ");
             char[] replaceTextArray = replaceText.ToCharArray();
-            char[] paperArray = Paper.ToArray();
+            char[] paperArray = paper.ToArray();
+            string appendString = "";
 
-            for (int j = 0; j < replaceTextArray.Length - 1;)
+            if (startingIndexLastErase >= 0)
             {
-                for (int i = startingPos + 1; i < paperArray.Length - 1; i++) //
+                int curPaperIndex = startingIndexLastErase;
+
+                for (int i = 0; i < replaceTextArray.Length; i++)
                 {
-                    if (paperArray[i] == ' ' && j < replaceTextArray.Length)
+                    //will incrementing spot in paper array exceed length of paper array ?
+                    if (curPaperIndex > paper.Length -1)
                     {
-                        paperArray[i] = replaceTextArray[j];
-                        DegradePoint(paperArray[i]);
+                        // y, append char
+                        appendString += replaceTextArray[i].ToString();
                     }
-                    else if (j < replaceTextArray.Length)
+                    else
                     {
-                        paperArray[i] = '@';
-                        DegradePoint(paperArray[i]);
+                        // n, edit char
+                        var charToUse = replaceTextArray[i];
+                        // is paper array char not white space?
+                        if (!char.IsWhiteSpace(paperArray[curPaperIndex]))
+                        {
+                            charToUse = '@';
+                        }
+                        bool degraded = _degradePoint(charToUse);
+                        if (degraded)
+                        {
+                            paperArray[curPaperIndex] = charToUse;
+                        } 
+                        curPaperIndex++;
                     }
-                    j++;
-                }
+                    startingIndexLastErase = -1;
+                } 
             }
-            paper = new string(paperArray);
+            paper = new string(paperArray) + appendString;
         }
     }
 }

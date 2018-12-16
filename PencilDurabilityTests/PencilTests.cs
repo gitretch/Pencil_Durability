@@ -4,7 +4,7 @@ using PencilDurability;
 namespace PencilDurabilityTests
 {
     [TestClass]
-    public class AtSymbol
+    public class PencilTests
     {
         [TestMethod]
         public void WhenPencilCreatedDefaultLengthIsFive()
@@ -60,77 +60,68 @@ namespace PencilDurabilityTests
             Assert.AreEqual(19, pencil.PointDurability);
         }
 
-        [TestMethod]
-        public void WhenDegradePointCalledIfCurrentPointDurabilityIsGreaterThanZeroReturnsTrue()
-        {
-            Pencil pencil = new Pencil();
-            char letter = ' ';
-            Assert.AreEqual(true, pencil.DegradePoint(letter));
-        }
+        //[TestMethod]
+        //public void WhenWriteCalledIfCurrentPointDurabilityIsGreaterThanZeroReturnsTrue()
+        //{
+        //    Pencil pencil = new Pencil();
+        //    char letter = ' ';
+        //    pencil.Write()
+        //    Assert.AreEqual(true, pencil.DegradePoint(letter));
+        //}
 
         [TestMethod]
-        public void WhenDegradePointPassedUpperCaseCharCurrentPointDurabilityDecreasesByTwo()
+        public void WheWritePassedUpperCaseCharCurrentPointDurabilityDecreasesByTwo()
         {
             Pencil pencil = new Pencil();
-            char letter = 'A';
-            pencil.DegradePoint(letter);
+            pencil.Write("A");
             Assert.AreEqual(18, pencil.PointDurability);
         }
 
-        [TestMethod]
-        public void WhenDegradePointPassedUpperCaseCharAndCurrentPointDurabilityIsOneReturnsFalse()
-        {
-            Pencil pencil = new Pencil(1, 1);
-            char letter = 'A';
-            Assert.AreEqual(false, pencil.DegradePoint(letter));
-        }
+        //[TestMethod]
+        //public void WhenWritePassedUpperCaseCharAndCurrentPointDurabilityIsOneCurrentPointDurabilityNotAffected()
+        //{
+        //    Pencil pencil = new Pencil(1, 1);
+        //    pencil.Write("A");
+        //    Assert.AreEqual(1, pencil.PointDurability);
+        //}
 
         [TestMethod]
-        public void WhenDegradePointPassedUpperCaseCharAndCurrentPointDurabilityIsOneCurrentPointDurabiltySetToZero()
+        public void WhenWritePassedUpperCaseCharAndCurrentPointDurabilityIsOneCurrentPointDurabiltySetToZero()
         {
             Pencil pencil = new Pencil(1, 1);
-            char letter = 'A';
-            pencil.DegradePoint(letter);
+            pencil.Write("A");
             Assert.AreEqual(0, pencil.PointDurability);
         }
 
         [TestMethod]
-        public void WhenDegradePointPassedWhiteSpaceCharPointDurabilityNotAffected()
+        public void WhenWritePassedEmptyStringPointDurabilityNotAffected()
         {
             Pencil pencil = new Pencil();
-            char letter = ' ';
-            bool result = pencil.DegradePoint(letter);
-            Assert.AreEqual(true, result);
+            pencil.Write(" ");
             Assert.AreEqual(20, pencil.PointDurability);
         }
 
         [TestMethod]
-        public void WhenDegradePointPassedLowerCaseCharPointDurabilityDecreasedByOne()
+        public void WhenWritePassedLowerCaseCharPointDurabilityDecreasedByOne()
         {
             Pencil pencil = new Pencil();
-            char letter = 'a';
-            bool result = pencil.DegradePoint(letter);
-            Assert.AreEqual(true, result);
+            pencil.Write("a");
             Assert.AreEqual(19, pencil.PointDurability);
         }
 
         [TestMethod]
-        public void WhenDegradePointPassedSpecialCharPointDurabilityDecreasedByOne()
+        public void WhenWritePassedSpecialCharPointDurabilityDecreasedByOne()
         {
             Pencil pencil = new Pencil();
-            char letter = '$';
-            bool result = pencil.DegradePoint(letter);
-            Assert.AreEqual(true, result);
+            pencil.Write("$");
             Assert.AreEqual(19, pencil.PointDurability);
         }
 
         [TestMethod]
-        public void WhenDegradePointPassedNumberDurabilityDecreasedByOne()
+        public void WhenWritePassedNumberDurabilityDecreasedByOne()
         {
             Pencil pencil = new Pencil();
-            char letter = '9';
-            bool result = pencil.DegradePoint(letter);
-            Assert.AreEqual(true, result);
+            pencil.Write("9");
             Assert.AreEqual(19, pencil.PointDurability);
         }
 
@@ -161,30 +152,30 @@ namespace PencilDurabilityTests
             Assert.AreEqual("chuc ", pencil.Paper);
         }
 
-        [TestMethod]
-        public void WhenDegradeEraserCalledIfCurrentEraserDurabiltyIsGreaterThanZeroReturnsTrue()
-        {
-            Pencil pencil = new Pencil();
-            char textToErase = 'a';
-            Assert.AreEqual(true, pencil.DegradeEraser(textToErase));
-        }
+        //[TestMethod]
+        //public void WhenEraseCalledIfCurrentEraserDurabiltyIsGreaterThanZeroReturnsTrue()
+        //{
+        //    Pencil pencil = new Pencil();
+        //    char textToErase = 'a';
+        //    Assert.AreEqual(true, pencil.DegradeEraser(textToErase));
+        //}
+
+    [TestMethod]
+    public void WhenErasePassedOneCharEraserDurabilityDecreasesByOne()
+    {
+        Pencil pencil = new Pencil(5,20,20, "a");
+        string textToErase= "a";
+        pencil.Erase(textToErase);
+        Assert.AreEqual(19, pencil.EraserDurability);
+    }
 
         [TestMethod]
-        public void WhenDegradeEraserPassedOneCharEraserDurabilityDecreasedBy1()
+        public void WhenErasePassedWhiteSpaceEraserDurabilityIsNotAffectedByWhiteSpace()
         {
-            Pencil pencil = new Pencil();
-            char textToErase = 'a';
-            pencil.DegradeEraser(textToErase);
-            Assert.AreEqual(19, pencil.EraserDurability);
-        }
-
-        [TestMethod]
-        public void WhenDegradeEraserPassedWhiteSpaceEraserDurabilityDoesntDecrease()
-        {
-            Pencil pencil = new Pencil();
-            char textToErase = ' ';
-            pencil.DegradeEraser(textToErase);
-            Assert.AreEqual(20, pencil.EraserDurability);
+            Pencil pencil = new Pencil(5, 20, 20, "test  test");
+            string textToErase = "  ";
+            pencil.Erase(textToErase);
+            Assert.AreEqual(18, pencil.EraserDurability);
         }
 
         [TestMethod]
@@ -214,16 +205,18 @@ namespace PencilDurabilityTests
         [TestMethod]
         public void WhenEditPassedNewTextInsertsThatText()
         {
-            Pencil pencil = new Pencil(5, 20, 20, "An       a day");
+            Pencil pencil = new Pencil(5, 20, 20, "An apple a day");
+            pencil.Erase("apple");
             string word = "onion";
             pencil.Edit(word);
             Assert.AreEqual("An onion a day", pencil.Paper);
         }
 
         [TestMethod]
-        public void WhenEditPassedStringThatCollidesWithExistingTextCollsionsReplacedWithAtSymbol() 
+        public void WhenEditPassedStringThatCollidesWithExistingTextCollsionsReplacedWithAtSymbol()
         {
-            Pencil pencil = new Pencil(5, 20, 20, "An       a day");
+            Pencil pencil = new Pencil(5, 20, 20, "An apple a day");
+            pencil.Erase("apple");
             string newText = "artichoke";
             pencil.Edit(newText);
             Assert.AreEqual("An artich@k@ay", pencil.Paper);
@@ -232,16 +225,22 @@ namespace PencilDurabilityTests
         [TestMethod]
         public void WhenEditPassedTextWithTwoCollisionsOneUpperCaseSixLowerCaseCharsPointDurabilityDecreasesByTen()
         {
-            Pencil pencil = new Pencil(5, 20, 20, "An       a day");
+            Pencil pencil = new Pencil(5, 20, 20, "An apple a day");
+            pencil.Erase("apple");
             string newText = "ArtichOke";
             pencil.Edit(newText);
             Assert.AreEqual(10, pencil.PointDurability);
         }
 
+        [TestMethod]
+        public void WhenEditPassedStringLongerThanPaperAppendsExcessCharsToPaper()
+        {
+            Pencil pencil = new Pencil(5, 20, 20, "Buffalo Bill");
+            pencil.Erase("Bill");
+            string newText = ("William");
+            pencil.Edit(newText);
+            Assert.AreEqual("Buffalo William", pencil.Paper);
 
-
-
-
-
+        }
     }
 }
